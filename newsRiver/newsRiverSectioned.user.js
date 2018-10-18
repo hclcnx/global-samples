@@ -29,68 +29,70 @@
 //
 // ==/UserScript==
 
-require(["dojo"], function(dojo) {
-  // utility function to let us wait for a specific element of the page to load...
-  var waitFor = function(callback, elXpath, maxInter, waitTime) {
-    if (!maxInter) maxInter = 300; // number of intervals before expiring
-    if (!waitTime) waitTime = 100; // 1000=1 second
-    var waitInter = 0; // current interval
-    var intId = setInterval( function() {
-      if (++waitInter >= maxInter) return;
-      if (typeof(dojo) == "undefined") return;
-      if (!dojo.query(elXpath, dojo.body()).length) return;
-      clearInterval(intId);
-      if (waitInter < maxInter) {
-        callback();
+if (typeof(dojo) != "undefined") {
+  require(["dojo", "dojo/domReady!"], function(dojo) {
+    // utility function to let us wait for a specific element of the page to load...
+    var waitFor = function(callback, elXpath, maxInter, waitTime) {
+      if (!maxInter) maxInter = 300; // number of intervals before expiring
+      if (!waitTime) waitTime = 100; // 1000=1 second
+      var waitInter = 0; // current interval
+      var intId = setInterval( function() {
+        if (++waitInter >= maxInter) return;
+        if (typeof(dojo) == "undefined") return;
+        if (!dojo.query(elXpath, dojo.body()).length) return;
+        clearInterval(intId);
+        if (waitInter < maxInter) {
+          callback();
+        }
+      }, waitTime);
+    };
+
+    function handleHashChangeEvent() {
+      // Get the current hashValue
+      var hashValue = window.location.hash;
+
+      if (hashValue == "#myStream/imFollowing/all") {
+        changeNewsRiverColour(240, 158, 231);
       }
-    }, waitTime);
-  };
-
-  function handleHashChangeEvent() {
-    // Get the current hashValue
-    var hashValue = window.location.hash;
-
-    if (hashValue == "#myStream/imFollowing/all") {
-      changeNewsRiverColour(240, 158, 231);
-    }
-    if (hashValue == "#atMentions/atMentions") {
-      changeNewsRiverColour(110, 158, 122);
-    }
-    if (hashValue == "#myNotifications/forme/all") {
-      changeNewsRiverColour(90, 111, 134);
-    }
-    if (hashValue == "#actionRequired/actionRequired/all") {
-      changeNewsRiverColour(20, 101, 234);
-    }
-    if (hashValue == "#saved/saved/all"){
-      changeNewsRiverColour(230, 2, 155);
-    }
-  }
-
-  function changeNewsRiverColour(rgb1, rgb2, rgb3) {
-    // Remove old style
-    var newsRiverStyle = dojo.byId("newsRiverStyle");
-    if (newsRiverStyle) {
-      dojo.destroy(newsRiverStyle); // destroy current style
+      if (hashValue == "#atMentions/atMentions") {
+        changeNewsRiverColour(110, 158, 122);
+      }
+      if (hashValue == "#myNotifications/forme/all") {
+        changeNewsRiverColour(90, 111, 134);
+      }
+      if (hashValue == "#actionRequired/actionRequired/all") {
+        changeNewsRiverColour(20, 101, 234);
+      }
+      if (hashValue == "#saved/saved/all"){
+        changeNewsRiverColour(230, 2, 155);
+      }
     }
 
-    // Add new style for activity stream cards colour
-    waitFor(function() {
-      dojo.place("<style id='newsRiverStyle'>"+
-        "#activityStream ul.lotusStream { background-color:rgba(" + rgb1 + "," + rgb2 + "," + rgb3 + ", " + (location.href.indexOf("/profiles/") > 0 ? "0" : "1") + "); border:0px; padding:5px 0px 5px 0px; }" +
-        "#activityStream ul.lotusStream > li { background-color:white; margin:25px 15px 25px 3px; box-shadow:5px 5px 15px #aaaaaa; border-radius:5px; }" +
-        "#activityStream ul.lotusStream > li:after { height:0px; }" +
-        ".lotusui30 .lotusBoard .lotusStream .lotusPostHover, .lotusui30 .lotusBoard .lotusStream .lotusPostSelected { border-radius: inherit; /* -webkit-transform: translate(3px,3px); -webkit-transition: width 2s, height 2s, -webkit-transform 0.25s;*/ }" +
-        ".lotusui30 .lotusStream .filterArea { border-radius:0 0 5px 5px; border-width:0 1px 1px }" +
-        ".lotusui30 .lotusStream .filterAreaInner { border: 0px }" +
-      "</style>",
-      dojo.body(),"append");
-    }, ".lotusStream ul#asPermLinkAnchor > li");
-  }
+    function changeNewsRiverColour(rgb1, rgb2, rgb3) {
+      // Remove old style
+      var newsRiverStyle = dojo.byId("newsRiverStyle");
+      if (newsRiverStyle) {
+        dojo.destroy(newsRiverStyle); // destroy current style
+      }
 
-  //listen for onHashChange event
-  window.onhashchange = handleHashChangeEvent;
+      // Add new style for activity stream cards colour
+      waitFor(function() {
+        dojo.place("<style id='newsRiverStyle'>"+
+          "#activityStream ul.lotusStream { background-color:rgba(" + rgb1 + "," + rgb2 + "," + rgb3 + ", " + (location.href.indexOf("/profiles/") > 0 ? "0" : "1") + "); border:0px; padding:5px 0px 5px 0px; }" +
+          "#activityStream ul.lotusStream > li { background-color:white; margin:25px 15px 25px 3px; box-shadow:5px 5px 15px #aaaaaa; border-radius:5px; }" +
+          "#activityStream ul.lotusStream > li:after { height:0px; }" +
+          ".lotusui30 .lotusBoard .lotusStream .lotusPostHover, .lotusui30 .lotusBoard .lotusStream .lotusPostSelected { border-radius: inherit; /* -webkit-transform: translate(3px,3px); -webkit-transition: width 2s, height 2s, -webkit-transform 0.25s;*/ }" +
+          ".lotusui30 .lotusStream .filterArea { border-radius:0 0 5px 5px; border-width:0 1px 1px }" +
+          ".lotusui30 .lotusStream .filterAreaInner { border: 0px }" +
+        "</style>",
+        dojo.body(),"append");
+      }, ".lotusStream ul#asPermLinkAnchor > li");
+    }
 
-  //set initial background colour of news river
-  handleHashChangeEvent();
-});
+    //listen for onHashChange event
+    window.onhashchange = handleHashChangeEvent;
+
+    //set initial background colour of news river
+    handleHashChangeEvent();
+  });
+}
