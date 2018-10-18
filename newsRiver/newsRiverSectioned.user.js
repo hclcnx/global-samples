@@ -5,7 +5,7 @@
 // @description  *** PROTOTYPE CODE *** displays river of news items as separate card styled sections
 //                                      and changes the background colour based on has event
 //
-// @namespace  http://ibm.com
+// @namespace    http://ibm.com
 //
 // @author       Tony Estrada - Padraic Edwards - Brian Gleeson
 //
@@ -30,7 +30,22 @@
 // ==/UserScript==
 
 if (typeof(dojo) != "undefined") {
-   require(["dojo/domReady!"], function() {
+  require(["dojo", "dojo/domReady!"], function(dojo) {
+    // utility function to let us wait for a specific element of the page to load...
+    var waitFor = function(callback, elXpath, maxInter, waitTime) {
+      if (!maxInter) maxInter = 300; // number of intervals before expiring
+      if (!waitTime) waitTime = 100; // 1000=1 second
+      var waitInter = 0; // current interval
+      var intId = setInterval( function() {
+        if (++waitInter >= maxInter) return;
+        if (typeof(dojo) == "undefined") return;
+        if (!dojo.query(elXpath, dojo.body()).length) return;
+        clearInterval(intId);
+        if (waitInter < maxInter) {
+          callback();
+        }
+      }, waitTime);
+    };
 
     function handleHashChangeEvent() {
       // Get the current hashValue
@@ -61,7 +76,8 @@ if (typeof(dojo) != "undefined") {
       }
 
       // Add new style for activity stream cards colour
-      dojo.place("<style id='newsRiverStyle'>"+
+      waitFor(function() {
+        dojo.place("<style id='newsRiverStyle'>"+
           "#activityStream ul.lotusStream { background-color:rgba(" + rgb1 + "," + rgb2 + "," + rgb3 + ", " + (location.href.indexOf("/profiles/") > 0 ? "0" : "1") + "); border:0px; padding:5px 0px 5px 0px; }" +
           "#activityStream ul.lotusStream > li { background-color:white; margin:25px 15px 25px 3px; box-shadow:5px 5px 15px #aaaaaa; border-radius:5px; }" +
           "#activityStream ul.lotusStream > li:after { height:0px; }" +
@@ -70,6 +86,7 @@ if (typeof(dojo) != "undefined") {
           ".lotusui30 .lotusStream .filterAreaInner { border: 0px }" +
         "</style>",
         dojo.body(),"append");
+      }, ".lotusStream ul#asPermLinkAnchor > li");
     }
 
     //listen for onHashChange event
@@ -77,5 +94,5 @@ if (typeof(dojo) != "undefined") {
 
     //set initial background colour of news river
     handleHashChangeEvent();
-   });
+  });
 }
