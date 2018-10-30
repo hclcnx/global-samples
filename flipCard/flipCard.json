@@ -4,6 +4,7 @@
       "application": "Flip Card Sample",
       "payload": {
         "include-files": [
+          "flipCard/commListCardsFlipStyle.css",
           "flipCard/commListCardsFlipStyle.user.js"
         ],
         "include-repo": {
