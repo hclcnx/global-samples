@@ -10,6 +10,7 @@
 //
 // @run-at       document-end
 // ==/UserScript==
+//
 
 if (typeof(dojo) != "undefined") {
   require(["dojo", "dojo/domReady!"], function(dojo) {
