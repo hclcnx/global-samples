@@ -30,6 +30,9 @@
                 ],
                 "include-repo": {
                     "name": "global-sample-apps"
+                },
+                "cache-headers": {
+                    "cache-control": "max-age=0"
                 }
             },
             "path": "homepage"
