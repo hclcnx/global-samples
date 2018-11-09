@@ -1,6 +1,6 @@
 require(["dojo/request", "dojo/topic", "dojo/domReady!"], function(request, topic) {
   var proxyApiCall = function() {
-    request('https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&text=${encodedText}',
+    request('https://jsonplaceholder.typicode.com/todos/2',
       {
         headers: {
           'Content-Type': 'application/json'
