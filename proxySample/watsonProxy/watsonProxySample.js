@@ -19,7 +19,7 @@ require(["dojo/request", "dojo/topic", "dojo/domReady!"], function(request, topi
     var encodedText = encodeURI(editorText);
 
     if(editorText && editorText.length > 0) {
-      request(`https%3A%2F%2Fgateway.watsonplatform.net%2Ftone-analyzer%2Fapi%2Fv3%2Ftone%3Fversion%3D2017-09-21%26text%3Dcrap`,
+      request(`https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&text=crap`,
         {
           headers: {
             'customizer-proxy': true,
