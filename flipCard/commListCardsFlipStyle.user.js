@@ -25,6 +25,7 @@ if (typeof(dojo) != "undefined") {
       }, waitTime);
     };
 
+    // No var so that it is created as global
     showTable = function() {
       dojo.cookie("commTiles", "0", { expires: -1 });
       dojo.replaceClass("viewControlTable", "lotusDetailsOn", "lotusDetailsOff");
@@ -33,6 +34,7 @@ if (typeof(dojo) != "undefined") {
       dojo.removeClass(dojo.query("#lconn_communities_catalog_widgets_ResultsDisplayWidget_0 table")[0], "lotusHidden");
     };
 
+    // No var so that it is created as global 
     showTiles = function() {
       dojo.cookie("commTiles", "1", { expires: 1000 });
       dojo.replaceClass("viewControlTiles", "lotusTileOn", "lotusTileOff");
@@ -42,7 +44,8 @@ if (typeof(dojo) != "undefined") {
       dojo.removeClass("commTiles", "lotusHidden");
     };
 
-    var createCommTiles = function() {
+    // No var so that it is created as global
+    createCommTiles = function() {
       var commTiles = dojo.byId("commTiles");
       if (commTiles) {
         dojo.destroy(commTiles); // destroy current tiles
@@ -89,7 +92,8 @@ if (typeof(dojo) != "undefined") {
       dojo.place(builtCommTiles, dojo.query("#lconn_communities_catalog_widgets_ResultsDisplayWidget_0 table")[0], "before");
     };
 
-    var addFlipCardUI = function() {
+    // No var so that it is created as global
+    addFlipCardUI = function() {
       // connect sort buttons to recreate the tiles
       // dojo.query("ul li a","lconn_communities_catalog_widgets_SortWidget_0").connect("click", createCommTiles);
       // connect table content changes to recreate the tiles
@@ -109,6 +113,6 @@ if (typeof(dojo) != "undefined") {
       }
     };
 
-    waitFor(addFlipCardUI(), "td a[dojoattachpoint='placeTitleLink']");
+    waitFor(addFlipCardUI, "td a[dojoattachpoint='placeTitleLink']");
   });
 }
