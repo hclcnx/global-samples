@@ -12,7 +12,7 @@
           "helloWorld/helloWorld.user.js"
         ],
         "include-repo":{
-          "name": "global-sample-apps"
+          "name": "global-samples"
         },
         "cache-headers": {
           "cache-control": "max-age=0"
