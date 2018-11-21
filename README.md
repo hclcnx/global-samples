@@ -1,4 +1,4 @@
-# Welcome to the global-samples repository for IBM Connections Customizer
+# Welcome to global-samples for IBM Connections Customizer
 
 ## What's Here?
 ### 1. Simple Samples
