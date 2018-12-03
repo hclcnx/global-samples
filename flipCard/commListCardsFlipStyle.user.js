@@ -53,39 +53,39 @@ if (typeof(dojo) != "undefined") {
 
       // create tiles
       var tiles = "";
-      dojo.query("#lconn_communities_catalog_widgets_ResultsDisplayWidget_0 table tr").forEach(function(n,i) {
-        var img = dojo.clone(dojo.query("td.lotusFirstCell img",n)[0] );
-        var commAnchor = dojo.query("td a[dojoattachpoint='placeTitleLink']",n)[0];
-        var members = dojo.query("td span[dojoattachpoint='numOfMembersPlaceHolder']",n)[0];
-        var updatedBy = dojo.query("td span[dojoattachpoint='personPlaceHolder']",n)[0];
-        var updatedOn = dojo.query("td span[dojoattachpoint='lastUpdateNode']",n)[0];
-        var typeMod = dojo.query("td span[dojoattachpoint='moderatedIconNode']",n)[0];
-        var typeRest = dojo.query("td span[dojoattachpoint='restrictedIconNode']",n)[0];
-        var trashed = dojo.query("td span[dojoattachpoint='trashedIconNode']",n)[0];
-        var src = dojo.query("td span[dojoattachpoint='sourceTypePlaceHolder']",n)[0];
-        var tags = dojo.query("td span[dojoattachpoint='tagsSection']",n)[0];
+        dojo.query("#lconn_communities_catalog_widgets_ResultsDisplayWidget_0 table tr").forEach(function(n,i){
+        img=dojo.clone(dojo.query("td.lotusFirstCell img",n)[0] );
+        commAnchor=dojo.query("td a[dojoattachpoint='placeTitleLink']",n)[0];
+        members=dojo.query("td span[dojoattachpoint='numOfMembersPlaceHolder']",n)[0];
+        updatedBy=dojo.query("td span[dojoattachpoint='personPlaceHolder']",n)[0];
+        updatedOn=dojo.query("td span[dojoattachpoint='lastUpdateNode']",n)[0];
+        typeMod=dojo.query("td span[dojoattachpoint='moderatedIconNode']",n)[0];
+        typeRest=dojo.query("td span[dojoattachpoint='restrictedIconNode']",n)[0];
+        trashed=dojo.query("td span[dojoattachpoint='trashedIconNode']",n)[0];
+        src=dojo.query("td span[dojoattachpoint='sourceTypePlaceHolder']",n)[0];
+        tags=dojo.query("td span[dojoattachpoint='tagsSection']",n)[0];
 
-        tiles += `
-          <div class="lotusLeft cTile" onclick="location.href=\'${commAnchor.href}\'">
-            <div class="flip-container" ontouchstart="this.classList.toggle(\'hover\');">
-              <div class="flipper">
-                <div id="cardFront" class="front">
-                  <div class="cTileImg">${img.outerHTML}</div>
-                </div>
-                <div id="cardBack" class="back">
-                  <div class="cTileTextContainter">
-                    <div class="cTileTitle">${commAnchor.outerHTML}</div>
-                    <div class="cTileSmallTextDiv">${members.outerHTML}</div>
-                    <div class="cTileSmallTextDiv">${updatedBy.outerHTML$} | ${updatedOn.outerHTML}</div>
-                    <div class="cTileSmallTextDiv">${tags.outerHTML}</div>
-                    <div class="cTileType">${typeRest.outerHTML}${typeMod.outerHTML}</div>
-                    <div class="cTileTrash">${trashed.outerHTML}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>`;
-      });
+        tiles +=
+        '<div class="lotusLeft cTile" onclick="location.href=\''+commAnchor.href+'\'">'+
+                      '<div class="flip-container" ontouchstart="this.classList.toggle(\'hover\');">'+
+            '<div class="flipper">'+
+              '<div id="cardFront" class="front">'+
+                            '<div class="cTileImg">'+img.outerHTML+'</div>'+
+                          '</div>'+
+              '<div id="cardBack" class="back">'+
+                            '<div class="cTileTextContainter">'+
+                              '<div class="cTileTitle">'+ commAnchor.outerHTML +'</div>'+
+                              '<div class="cTileSmallTextDiv">'+members.outerHTML+'</div>'+
+                              '<div class="cTileSmallTextDiv">'+updatedBy.outerHTML+' | '+updatedOn.outerHTML+'</div>'+
+                              '<div class="cTileSmallTextDiv">'+tags.outerHTML+'</div>'+
+                                '<div class="cTileType">'+typeRest.outerHTML+typeMod.outerHTML+'</div>'+
+                                '<div class="cTileTrash">'+trashed.outerHTML+'</div>'+
+                            '</div>'+
+                          '</div>'+
+                        '</div>'+
+                    '</div>'+
+                  '</div>';
+    });
 
       var commTilesClass = dojo.hasClass("viewControlTiles","lotusTileOn") ? 'commTiles' : 'commTiles lotusHidden';
       var builtCommTiles = `<div id="commTiles" class="${commTilesClass}">${tiles}</div>`;
