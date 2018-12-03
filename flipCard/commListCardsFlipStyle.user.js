@@ -73,7 +73,7 @@ if (typeof(dojo) != "undefined") {
                   <div class="cTileImg">${img.outerHTML}</div>
                 </div>
                 <div id="cardBack" class="back">
-                  <div class="cTileTextContainter">
+                  <div class="cTileTextContainer">
                     <div class="cTileTitle">${commAnchor.outerHTML}</div>
                     <div class="cTileSmallTextDiv">${members.outerHTML}</div>
                     <div class="cTileSmallTextDiv">${updatedBy.outerHTML} | ${updatedOn.outerHTML}</div>
