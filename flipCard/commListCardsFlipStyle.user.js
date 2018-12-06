@@ -103,7 +103,7 @@ if (typeof(dojo) != "undefined") {
       var viewController = `
         <div id="viewControl" class="lotusViewControl lotusRight" style="margin-right: 50px;">
           <a id="viewControlTable" class="lotusSprite lotusView lotusDetailsOn" href="javascript:;" onclick="showTable();"><span class="lotusAltText ">Customizable</span></a>
-          <a id="viewControlTiles" class="lotusSprite lotusView lotusTileOff"  href="javascript:;" onclick="showTiles();"><span class="lotusAltText lotusBold">List</span></a>
+          <a id="viewControlTiles" class="lotusSprite lotusView lotusTileOff" href="javascript:;" onclick="showTiles();"><span class="lotusAltText lotusBold">List</span></a>
         </div>`;
       dojo.place(viewController, dojo.query("#mainContentDiv div.lotusActionBar.lotusBtnContainer")[0], "append");
 
