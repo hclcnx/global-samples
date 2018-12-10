@@ -6,6 +6,7 @@
   "extensions": [
     {
       "name": "!!SmoothLoader",
+      "title": "Smooth Loader",
       "type": "com.ibm.customizer.ui",
       "payload": {
         "include-files": ["samples/smoothLoad/smoothLoad.js", "samples/smoothLoad/smoothLoad.css"],
