@@ -13,9 +13,9 @@
         "cache-headers": {
           "cache-control": "max-age=0"
         },
-				"match": {
-							"url": "mycommunities|allcommunities|ownedcommunities|followedcommunities|createdcommunities|communityinvites|trashedcommunities"
-						}
+        "exclude": {
+          "url": "communityUuid|communitycreate"
+        }
       },
       "name": "Communities FlipCard Extension",
       "type": "com.ibm.customizer.ui",
