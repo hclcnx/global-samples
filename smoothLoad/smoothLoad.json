@@ -1,5 +1,5 @@
 {
-  "name": "SmoothLoad",
+  "name": "!!SmoothLoad",
   "title": "Smooth Loader",
   "description": "Hides UI until page has fully loaded, giving a smoother loading experience",
   "services": ["Customizer"],
