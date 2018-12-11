@@ -15,7 +15,7 @@ if (typeof(dojo) != "undefined") {
   require(["dojo", "dojo/domReady!"], function(dojo) {
     var waitFor = function(callback, elXpath, maxInter, waitTime) {
       if(!maxInter) maxInter = 20; // number of intervals before expiring
-      if(!waitTime) waitTime = 100; // 1000=1 second
+      if(!waitTime) waitTime = 100; //  1000=1 second
       if(!elXpath) return;
       var waitInter = 0; // current interval
       var intId = setInterval(function() {
