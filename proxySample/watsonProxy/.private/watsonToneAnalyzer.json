@@ -1,4 +1,5 @@
 {
+   "url":"https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&text=crap",
    "authType":"Basic",
    "username": "be4077ba-35fd-45a6-8455-797c75e3ecc5",
    "password": "iknoEXEn7RAD"

@@ -19,10 +19,9 @@ require(["dojo/request", "dojo/topic", "dojo/domReady!"], function(request, topi
     var encodedText = encodeURI(editorText);
 
     if(editorText && editorText.length > 0) {
-      request(`https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&text=crap`,
+      request(`/files/customizer/proxy?reponame=global-samples&proxyFile=proxySample/watsonProxy/.private/watsonToneAnalyzer.json`,
         {
           headers: {
-            'customizer-proxy': true,
             'Content-Type': 'application/json'
           },
           handleAs: 'json',
