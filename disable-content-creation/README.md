@@ -87,4 +87,4 @@ Use the following procedure:
 
 5. There is a very obvious banner across the top of the page that states "THIS ORG IS IN READ-ONLY MODE".
 
-6. Buttons and links that typically are present to create content should not be visible.
+6. Buttons and links that are typically present to create content should not be visible.
