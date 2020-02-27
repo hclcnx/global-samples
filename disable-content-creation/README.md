@@ -9,7 +9,7 @@ This example is provided as-is and can be used to hide the UI artifacts, such as
 ## Enabling the Customization Extension
 The files that enable the hiding of the elements are made available and are directly referencable from the public git repository [ibmcnxdev
 /
-global-samples](https://github.com/ibmcnxdev/global-samples) in he [disable-content-creation](https://github.com/ibmcnxdev/global-samples/tree/master/disable-content-creation) directory.
+global-samples](https://github.com/ibmcnxdev/global-samples) in the [disable-content-creation](https://github.com/ibmcnxdev/global-samples/tree/master/disable-content-creation) directory.
 
 As an administrator of the organization, do the following:
 
