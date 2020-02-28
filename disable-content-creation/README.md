@@ -7,6 +7,10 @@ This example is provided as-is and can be used to hide the UI artifacts, such as
 2. This does not affect SmartCloud Notes (email / calendar) services.
 
 ## Enabling the Customization Extension
+If your organization already makes use of the Customizer technology, then proceed with the administrator instructions to set up the extension.
+
+Otherwise, send an email to [hclcnxdev@pnp-hcl.com](mailto:hclcnxdev@pnp-hcl.com) including your **Organization Name** and **Organization ID** number and request that Customizer be enabled for your organization. Once that is done, you will be notified and can proceed with the instructions below.
+
 The files that enable the hiding of the elements are made available and are directly referencable from the public git repository [ibmcnxdev
 /
 global-samples](https://github.com/ibmcnxdev/global-samples) in the [disable-content-creation](https://github.com/ibmcnxdev/global-samples/tree/master/disable-content-creation) directory.
