@@ -1,0 +1,26 @@
+{
+    "name": "My WebMeeting",
+    "title": "My WebMeeting",
+    "description": "Allows each user to quickly us its own Web Meeting",
+    "services": [
+        "Customizer"
+    ],
+    "state": "enabled",
+    "extensions": [
+        {
+            "name": "webMeeting",
+            "type": "com.ibm.customizer.ui",
+            "payload": {
+                "include-files": [
+                    "webMeetings/commonTools.js",
+                    "webMeetings/webMeeting.js"
+                ],
+                "cache-headers": {
+                    "cache-control": "max-age=0"
+                }
+            },
+            "path": "global",
+            "state": "enabled"
+        }
+    ]
+}
