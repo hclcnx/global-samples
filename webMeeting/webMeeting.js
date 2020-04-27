@@ -34,7 +34,7 @@
 //
 var electedAttribute = 'LINKROLL';
 // Check for cloud or not
-if (document.location.pathname.startsWith('https://apps.')) {
+if (document.location.href.startsWith('https://apps.')) {
     __placeId = "bss-usersMenu";
     __cBill_logger('cnxMeetingInjector : Cloud place Id = '+__placeId);
 
