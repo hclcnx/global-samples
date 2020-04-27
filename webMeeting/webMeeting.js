@@ -33,6 +33,15 @@
 //  *********************************************************************
 //
 var electedAttribute = 'LINKROLL';
+// Check for cloud or not
+if (document.location.pathname.startsWith('https://apps.')) {
+    __placeId = "bss-usersMenu";
+    __cBill_logger('cnxMeetingInjector : Cloud place Id = '+__placeId);
+
+} else {
+    __placeId = "lotusPerson";
+    __cBill_logger('cnxMeetingInjector : Non-cloud place Id = '+__placeId);
+}
 if (document.location.pathname.startsWith('/connections/opensocial/') || document.location.pathname.startsWith('/connections/resources/') || document.location.pathname.startsWith('/touchpoint')) {
     __cBill_logger('cnxMeetingInjector : ******************* ignoring ' + document.location.pathname + ' **********************');
 } else {
@@ -80,8 +89,8 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                         //  then, add the newly created label and HIDE the DIV containg the checkbox
                         //
                         dojo.place(newA, newLI, "first");
-                        dojo.place(newLI, "lotusPerson", "after");
-                    }, 'lotusPerson');
+                        dojo.place(newLI, __placeId, "after");
+                    },  __placeId);
                 } else {
                     //
                     //  Do not do Anything
