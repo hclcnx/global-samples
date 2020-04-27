@@ -29,7 +29,7 @@ The provided example uses a mix of Dojo and Javascript to dynamically add the ic
 
 In the default case, when LINKROLL technique is being used:
 1. Wait until dojo is initialized.
-2. Retrieve the base JSON profile data for the user to identify their unique uuid.
+2. Retrieve the base profile data for the user to identify their unique uuid.
 3. Use the uuid to request the profileLinks item from the profile extensions data.
 4. Parse the link list to find the link label Meeting.
 5. Extract the URL value from the Meeting entry.
@@ -37,7 +37,7 @@ In the default case, when LINKROLL technique is being used:
 
 If an existing profile attribute is being used, rather than LINKROLL:
 1. Wait until dojo is initialized.
-2. Retrieve the base JSON profile data for the user.
+2. Retrieve the base profile data for the user.
 3. Parse the profile data to get the value for the specified attribute name.
 4. Insert the icon element in the navigation bar with that URL reference.
 
