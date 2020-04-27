@@ -59,19 +59,29 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                         let newA = dojo.create('a');
                         dojo.setAttr(newA, 'role', 'button');
                         dojo.setAttr(newA, 'innerHTML', '<img src="/files/customizer/webMeetings/webMeeting.png"></img>');
-                        //dojo.addClass(newA, 'lotusBannerBtn');
-                        dojo.setStyle(newA, "padding-bottom", "7px");
+                        dojo.setStyle(newA, "cursor", "pointer");
                         newA.addEventListener('click', function() {
                             dojo.stopEvent(event);
                             let win = window.open(theMeeting, '_blank');
                             win.focus();
                         });
+                        /*
+                        dojo.setStyle(newA, "padding-bottom", "7px");
+                        dojo.setAttr(newA, 'onmouseover', "dojo.require('lconn.core.header'); lconn.core.header.menuMouseover(this);");
+                        dojo.setAttr(newA, 'onclick', "dojo.require('lconn.core.header');lconn.core.header.menuClick(this);");
+                        dojo.setAttr(newA, 'onfocus', "dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);");
+                       
+                        newA.addEventListener('mouseover', function() {
+                            dojo.require('lconn.core.header');
+                            lconn.core.header.menuMouseover(this)
+                        });
+                        */
                         //
                         //  then, add the newly created label and HIDE the DIV containg the checkbox
                         //
                         dojo.place(newA, newLI, "first");
-                        dojo.place(newLI, "lotusBannerNotifications", "after");
-                    }, 'lotusBannerNotifications');
+                        dojo.place(newLI, "lotusPerson", "after");
+                    }, 'lotusPerson');
                 } else {
                     //
                     //  Do not do Anything
@@ -90,10 +100,10 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                 let __userId = lconn.core.auth.getUser().id;
                 __cBill_logger('cnxMeetingInjector : Getting profile data for userId: ' + __userId);
                 let profilesArgs = {
-                    url: "/profiles/json/profile.do",
-                    handleAs: "json",
+                    url: "/profiles/atom/profile.do",
+                    handleAs: "xml",
                     preventCache: true,
-                    content: { userid: __userId }
+                    content: { userid: __userId, format: 'full' }
                 };
                 let deferred = dojo.xhrGet(profilesArgs);
                 deferred.then(function(data) {
@@ -103,37 +113,91 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                         //  The REST Call returned succesfully
                         //  Get the HCARD for the user in XML format
                         //
-                        /*dojo.require("dojox.atom.io.model");
+                        dojo.require("dojox.atom.io.model");
                         let feed = new dojox.atom.io.model.Feed();
                         let parser = new DOMParser();
                         feed.buildFromDom(data.documentElement);
                         let hcardXML = parser.parseFromString(feed.entries[0].content.value, "text/html");
-                        */
                         let theMeeting = null;
                         if (electedAttribute !== 'LINKROLL') {
-                            //
-                            //  If the electedAttribute is NOT LINKROLL, fetch the value associated to the elected attribute
-                            //
-                            // let results = document.evaluate("//div[@class='" + electedAttribute + "']", hcardXML.documentElement, null, XPathResult.ANY_TYPE, null );
-                            // let theNode = results.iterateNext();
-                            __cBill_logger('cnxMeetingInjector : Looking for meeting url in ' + electedAttribute);
-                            theMeeting = data[electedAttribute];
-                            if (theMeeting !== null) {
-                                __cBill_logger('cnxMeetingInjector : Found ' + electedAttribute + ' Meeting Link : ' + theMeeting);
-                                showMeetingICON(theMeeting);
+                            if (electedAttribute.startsWith('$')) {
+                                //
+                                //  This is an EXTENDED ATTRIBUTE
+                                //  Ftech the value of the EXTENDED Attributed
+                                //
+                                electedAttribute = electedAttribute.substr(1);
+                                __cBill_logger('cnxMeetingInjector : Looking for meeting url in EXTENDED Attribute ' + electedAttribute);
+                                let results = hcardXML.evaluate("//div[@class='x-extension-property-id' and text()='" + electedAttribute + "']", hcardXML.documentElement, null, XPathResult.ANY_TYPE, null );
+                                let theNode = results.iterateNext();
+                                if (theNode !== null) {
+                                    //
+                                    //  Look for a Sibling whose class is "x-extension-value"
+                                    //
+                                    let theParent = theNode.parentElement;
+                                    let theChild = null;
+                                    for (let k=0; k < theParent.children.length; k++) {
+                                        if (theParent.children[k].class === 'x-extension-value') {
+                                            theChild = theParent.children[k].innerText;
+                                            break;
+                                        }
+                                    }
+                                    if (theChild !== null) {
+                                        theMeeting = theChild;
+                                        __cBill_logger('cnxMeetingInjector : Found ' + electedAttribute + ' Meeting Link : ' + theMeeting);
+                                        showMeetingICON(theMeeting);
+                                    } else {
+                                        //
+                                        //  No Sibling with a VALUE....
+                                        //
+                                        __cBill_logger('cnxMeetingInjector : electedAttribute ' + electedAttribute + ' Found but with NO VALUE');
+                                    }
+                                } else {
+                                    //
+                                    //  No Extended Attribute with that name
+                                    //
+                                    __cBill_logger('cnxMeetingInjector : EXTENDED electedAttribute ' + electedAttribute + ' was not found !');
+                                }
                             } else {
                                 //
-                                //  Probably the Profile attribute is misspelled
+                                //  Normal attribute
+                                //  Fetch the value associated to the elected attribute
                                 //
-                                __cBill_logger('cnxMeetingInjector : electedAttribute ' + electedAttribute + ' was not found !');
+                                __cBill_logger('cnxMeetingInjector : Looking for meeting url in Attribute ' + electedAttribute);
+                                let results = hcardXML.evaluate("//*[@class='" + electedAttribute + "']", hcardXML.documentElement, null, XPathResult.ANY_TYPE, null );
+                                let theNode = results.iterateNext();
+                                if (theNode !== null) {
+                                    theMeeting = theNode.innerText;
+                                    __cBill_logger('cnxMeetingInjector : Found ' + electedAttribute + ' Meeting Link : ' + theMeeting);
+                                    showMeetingICON(theMeeting);
+                                } else {
+                                    //
+                                    //  Perhaps it is an attribute of class "url"...
+                                    //
+                                    results = hcardXML.evaluate("//*[@class='" + electedAttribute + " url']", hcardXML.documentElement, null, XPathResult.ANY_TYPE, null );
+                                    theNode = results.iterateNext();
+                                    if (theNode !== null) {
+                                        theMeeting = theNode.href;
+                                        __cBill_logger('cnxMeetingInjector : Found ' + electedAttribute + ' Meeting Link : ' + theMeeting);
+                                        showMeetingICON(theMeeting);
+                                    } else {
+                                        //
+                                        //  Probably the Profile attribute is misspelled
+                                        //
+                                        __cBill_logger('cnxMeetingInjector : electedAttribute ' + electedAttribute + ' was not found !');
+                                    }
+                                }
                             }
                         } else {
                             //
                             //  Linkroll case.
                             //  We need first to fetch the KEY 
                             //
-                            let theKey = data.key;
-                            if (theKey !== null) {
+                            __cBill_logger('cnxMeetingInjector : Looking for meeting URL in Linkroll...');
+                            let theKey = null;
+                            let results = hcardXML.evaluate("//div[@class='x-profile-key']", hcardXML.documentElement, null, XPathResult.ANY_TYPE, null );
+                            let theNode = results.iterateNext();
+                            if (theNode !== null) {
+                                theKey = theNode.innerText;
                                 //
                                 //  Now we got and fetch the Linkroll
                                 //
@@ -150,7 +214,6 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                                         //  There is a LINKROLL.
                                         //  Check if there is a LINK whose name is "Meeting"
                                         //
-                                        __cBill_logger('cnxMeetingInjector : Processing extension data list');
                                         for (let i=0; i < data.documentElement.children.length; i++) {
                                             let theChild = data.documentElement.children[i];
                                             let theNameAttribute = theChild.attributes[0];

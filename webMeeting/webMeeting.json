@@ -15,6 +15,9 @@
                     "webMeeting/commonTools.js",
                     "webMeeting/webMeeting.js"
                 ],
+                "include-repo": {
+                    "name": "global-samples"
+                },
                 "cache-headers": {
                     "cache-control": "max-age=43200"
                 }
