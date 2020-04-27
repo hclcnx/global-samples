@@ -19,7 +19,7 @@ In the **webMeeting.js** file, the variable **electedAttribute** is used to dete
 Variable Name | Purpose
 ------------- | -------
 **LINKROLL** | (default) In this case the script looks for a link named 'Meeting' (spelled exactly as written) in which each user will add the URL of the meeting service of their choice.
-**AttributeName** | The name of an existing profile attribute (e.g. *X_blogUrl* to use blog URL for this purpose instead). Users will have to insert the link to their preferred meeting service by modifying that attribute in their profile.
+**AttributeName** | The name of an existing profile attribute (e.g. *x-groupwareMail* to use the value in that attribute for this purpose instead). Users will have to insert the link to their preferred meeting service by modifying that attribute in their profile.
 
 ## Modifying the Meeting Icon
 The image file is named **webMeeting.png** and is 24x24 pixels. A different image can be used to replace this file keeping the same file name, or the reference to the image file name in the webMeeting.js script can be changed.
