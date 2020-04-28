@@ -58,11 +58,11 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                         //
                         let newFather = null;
                         if (document.location.href.startsWith('https://apps.')) {
-                            newFather = dojo.create('li');
-                        } else {
                             newFather = dojo.create('div');
                             __repoSuffix = '?repoName=global-samples';
                             __beforeOrAfter = 'before';
+                        } else {
+                            newFather = dojo.create('li');
                         }
                         dojo.setAttr(newFather, 'id', 'lotusBannerMeeting');
                         let newA = dojo.create('a');
