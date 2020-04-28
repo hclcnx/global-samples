@@ -377,11 +377,4 @@ if (__cBill_debug !== undefined) {
         }
         return "";
     }
-
-    //
-    //  These are global variables reused throughout the scripts
-    //  =========================================================
-
-    //  This variable holds the URL of the Connections instance
-    var __cBill_connectionsServer = 'https://mtdemo1.cnx.cwp.pnp-hcl.com';
 }
