@@ -1,4 +1,3 @@
-
 /*
  * © Copyright HCL Corp. 2020
  * 
@@ -33,15 +32,6 @@
 //  *********************************************************************
 //
 var electedAttribute = 'LINKROLL';
-// Check for cloud or not
-if (document.location.href.startsWith('https://apps.')) {
-    __placeId = "bss-usersMenu";
-    __cBill_logger('cnxMeetingInjector : Cloud place Id = '+__placeId);
-
-} else {
-    __placeId = "lotusPerson";
-    __cBill_logger('cnxMeetingInjector : Non-cloud place Id = '+__placeId);
-}
 if (document.location.pathname.startsWith('/connections/opensocial/') || document.location.pathname.startsWith('/connections/resources/') || document.location.pathname.startsWith('/touchpoint')) {
     __cBill_logger('cnxMeetingInjector : ******************* ignoring ' + document.location.pathname + ' **********************');
 } else {
@@ -53,18 +43,24 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
     //
     __dojoIsReady.do(function () {
         try {
+            let __placeId = null;
             let showMeetingICON = function(theMeeting) {
                 if (theMeeting !== null) {
                     //
                     //  Build the new visual item
                     //
                     let __cloche = new __cBill_waitById('checkNotification');
-                    __cloche.do(function (theCloche) {
+                    __cloche.do(function (theItem) {
                         //
                         //  Found the Notifications
                         //
-                        let newLI = dojo.create('li');
-                        dojo.setAttr(newLI, 'id', 'lotusBannerMeeting');
+                        let newFather = null;
+                        if (document.location.href.startsWith('https://apps.')) {
+                            newFather = dojo.create('li');
+                        } else {
+                            newFather = dojo.create('div');
+                        }
+                        dojo.setAttr(newFather, 'id', 'lotusBannerMeeting');
                         let newA = dojo.create('a');
                         dojo.setAttr(newA, 'role', 'button');
                         dojo.setAttr(newA, 'innerHTML', '<img src="/files/customizer/webMeetings/webMeeting.png"></img>');
@@ -78,8 +74,7 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                         dojo.setStyle(newA, "padding-bottom", "7px");
                         dojo.setAttr(newA, 'onmouseover', "dojo.require('lconn.core.header'); lconn.core.header.menuMouseover(this);");
                         dojo.setAttr(newA, 'onclick', "dojo.require('lconn.core.header');lconn.core.header.menuClick(this);");
-                        dojo.setAttr(newA, 'onfocus', "dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);");
-                       
+                        dojo.setAttr(newA, 'onfocus', "dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);");                      
                         newA.addEventListener('mouseover', function() {
                             dojo.require('lconn.core.header');
                             lconn.core.header.menuMouseover(this)
@@ -88,8 +83,8 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                         //
                         //  then, add the newly created label and HIDE the DIV containg the checkbox
                         //
-                        dojo.place(newA, newLI, "first");
-                        dojo.place(newLI, __placeId, "after");
+                        dojo.place(newA, newFather, "first");
+                        dojo.place(newFather, __placeId, "after");
                     },  __placeId);
                 } else {
                     //
@@ -106,6 +101,20 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
             //  Variable "lconn.core.auth.getUser().id" is available from Connections
             //
             try {
+                //
+                //  Check for cloud or not
+                //
+                if (document.location.href.startsWith('https://apps.')) {
+                    __placeId = "bss-usersMenu";
+                    __cBill_logger('cnxMeetingInjector : Cloud place Id = '+__placeId);
+                
+                } else {
+                    __placeId = "lotusPerson";
+                    __cBill_logger('cnxMeetingInjector : Non-cloud place Id = '+__placeId);
+                }
+                //
+                //  Fetch the Profile details
+                //
                 let __userId = lconn.core.auth.getUser().id;
                 __cBill_logger('cnxMeetingInjector : Getting profile data for userId: ' + __userId);
                 let profilesArgs = {
