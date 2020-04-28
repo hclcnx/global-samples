@@ -11,6 +11,23 @@ Once that link is created, the icon will show up in the navigation bar.
 
 The extension should work unchanged in this case.
 
+This extension will work with **any meeting provider** where the meeting is accessed via a standard **static** URL, for example:
+
+Provider | Typical Meeting URL
+-------- | -------------------
+Cisco WebEx | `https://site.webex.com/join/meetingName`
+Connections Cloud | See (1) below
+HCL Sametime | `https://sametime.host.com/meetingName`
+Jitsi Meet | `https://meet.jit.si/meetingName`
+LogMeIn GotoMeeting | `https://www.gotomeet.me/meetingName`
+Microsoft Teams | See (2) below
+Zoom | `https://zoom.us/j/meetingName`
+
+Notes:
+1) Connections Cloud has a built-in meeting service with links already in the navigation bar, but some users may not have a subscription to host meetings or may just have an alternative meeting provider that they want to use with this extension.
+
+2) Microsoft Teams meetings are typically started in the context of a chat or channel and are thus not defined with a static owner URL. If a user hosts a Teams meeting that can be identified with a static URL, it could be used with this extension.
+
 ## Modifying the Extension JS Script
 An administrator can choose to reference an existing profile variable instead of the default link roll entry.
 
@@ -19,7 +36,7 @@ In the **webMeeting.js** file, the variable **electedAttribute** is used to dete
 Variable Name | Purpose
 ------------- | -------
 **LINKROLL** | (default) In this case the script looks for a link named 'Meeting' (spelled exactly as written) in which each user will add the URL of the meeting service of their choice.
-**AttributeName** | The name of an existing profile attribute (e.g. *X_blogUrl* to use blog URL for this purpose instead). Users will have to insert the link to their preferred meeting service by modifying that attribute in their profile.
+**AttributeName** | The name of an existing profile attribute (e.g. *x-groupwareMail* to use the value in that attribute for this purpose instead). Users will have to insert the link to their preferred meeting service by modifying that attribute in their profile. If the attribute to be used is part of the **extended attribute set**, the name must be prefixed with a **$**.
 
 ## Modifying the Meeting Icon
 The image file is named **webMeeting.png** and is 24x24 pixels. A different image can be used to replace this file keeping the same file name, or the reference to the image file name in the webMeeting.js script can be changed.
@@ -29,7 +46,7 @@ The provided example uses a mix of Dojo and Javascript to dynamically add the ic
 
 In the default case, when LINKROLL technique is being used:
 1. Wait until dojo is initialized.
-2. Retrieve the base JSON profile data for the user to identify their unique uuid.
+2. Retrieve the base profile data for the user to identify their unique uuid.
 3. Use the uuid to request the profileLinks item from the profile extensions data.
 4. Parse the link list to find the link label Meeting.
 5. Extract the URL value from the Meeting entry.
@@ -37,7 +54,7 @@ In the default case, when LINKROLL technique is being used:
 
 If an existing profile attribute is being used, rather than LINKROLL:
 1. Wait until dojo is initialized.
-2. Retrieve the base JSON profile data for the user.
+2. Retrieve the base profile data for the user.
 3. Parse the profile data to get the value for the specified attribute name.
 4. Insert the icon element in the navigation bar with that URL reference.
 
