@@ -31,7 +31,7 @@
 //  *                                                                   *
 //  *********************************************************************
 //
-var electedAttribute = 'x-building';
+var electedAttribute = 'LINKROLL';
 if (document.location.pathname.startsWith('/connections/opensocial/') || document.location.pathname.startsWith('/connections/resources/') || document.location.pathname.startsWith('/touchpoint')) {
     __cBill_logger('cnxMeetingInjector : ******************* ignoring ' + document.location.pathname + ' **********************');
 } else {
