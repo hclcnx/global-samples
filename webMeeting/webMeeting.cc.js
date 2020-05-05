@@ -31,7 +31,7 @@
 //  *                                                                   *
 //  *********************************************************************
 //
-var electedAttribute = 'LINKROLL';
+var electedAttribute = '$item1';
 if (document.location.pathname.startsWith('/connections/opensocial/') || document.location.pathname.startsWith('/connections/resources/') || document.location.pathname.startsWith('/touchpoint')) {
     __cBill_logger('cnxMeetingInjector : ******************* ignoring ' + document.location.pathname + ' **********************');
 } else {
