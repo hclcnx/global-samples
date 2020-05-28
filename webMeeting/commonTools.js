@@ -288,7 +288,11 @@ if (__cBill_debug !== undefined) {
                         //
                         __cBill_logger(n.label + '.commonTools.WaitForDojo.do : This is normal : TIMEOUT Expired on Error page !');
                     } else {
-                        alert(n.label + '.__cBill_waitForDojo.do : TIMEOUT EXPIRED !');
+                        __cBill_logger(n.label + ' ');
+                        __cBill_logger(n.label + '*******************************************');
+                        __cBill_logger(n.label + '.__cBill_waitForDojo.do : TIMEOUT EXPIRED !');
+                        __cBill_logger(n.label + '*******************************************');
+                        __cBill_logger(n.label + ' ');
                     }
                     return;
                 } else {
@@ -301,7 +305,11 @@ if (__cBill_debug !== undefined) {
                         dojo.require("dojo.cookie");
                         require(["dojo/domReady!"], callback());
                     } else {
-                        alert(n.label + '.__cBill_waitForDojo.do : BAD DOJO version !');
+                        __cBill_logger(n.label + ' ');
+                        __cBill_logger(n.label + '********************************************');
+                        __cBill_logger(n.label + '.__cBill_waitForDojo.do : BAD DOJO version !');
+                        __cBill_logger(n.label + '********************************************');
+                        __cBill_logger(n.label + ' ');
                     }
                 }
             }, waitTime);
