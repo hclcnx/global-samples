@@ -94,3 +94,21 @@ Use the following procedure:
 5. There is a very obvious banner across the top of the page that states "THIS ORG IS IN READ-ONLY MODE".
 
 6. Buttons and links that are typically present to create content should not be visible.
+
+## Customizing the Banner Message
+The extension contributes a small admin option to specify an organization specific banner message.
+
+By default, as was stated above, the message THIS ORG IS IN READ-ONLY MODE is displayed just under the navigation bar.
+
+As an administrator, this text can be changed by clicking *Admin | CE Features* and editing the text message in the box provided.
+
+Note that you can include an `<a href></a>` tag in this text that will render as a clickable link in the banner.
+
+For example, if you enter a string like this in the box
+```
+READ-ONLY: Please use our new <a href="https://new.connections.com/homepage">Connections</a> environment.
+```
+then after saving and refreshing the page the banner should update and render with this new message including the clickable link to the new environment.
+
+## Alternative Notification Option
+As an alternative, an administrator can also use the built in announcement feature *Admin | Manage Organization | Announcements* to indicate to users that the organization is no longer allowing content updates. The announcement can also contain a link to the new environment, although users have to click the **More** option on the right hand side of the announcement line, to expose the link.
