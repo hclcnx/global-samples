@@ -1,4 +1,3 @@
-
 /*
  * © Copyright HCL Corp. 2020
  * 
@@ -33,15 +32,6 @@
 //  *********************************************************************
 //
 var electedAttribute = 'LINKROLL';
-// Check for cloud or not
-if (document.location.href.startsWith('https://apps.')) {
-    __placeId = "bss-usersMenu";
-    __cBill_logger('cnxMeetingInjector : Cloud place Id = '+__placeId);
-
-} else {
-    __placeId = "lotusPerson";
-    __cBill_logger('cnxMeetingInjector : Non-cloud place Id = '+__placeId);
-}
 if (document.location.pathname.startsWith('/connections/opensocial/') || document.location.pathname.startsWith('/connections/resources/') || document.location.pathname.startsWith('/touchpoint')) {
     __cBill_logger('cnxMeetingInjector : ******************* ignoring ' + document.location.pathname + ' **********************');
 } else {
@@ -53,43 +43,74 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
     //
     __dojoIsReady.do(function () {
         try {
+            let __placeId = 'lotusPerson';
+            let __repoSuffix = '';
+            let __beforeOrAfter = 'after';
+            let __newFatherTag = 'li';
             let showMeetingICON = function(theMeeting) {
                 if (theMeeting !== null) {
                     //
                     //  Build the new visual item
                     //
-                    let __cloche = new __cBill_waitById('checkNotification');
-                    __cloche.do(function (theCloche) {
+                    let __theSibling = new __cBill_waitById('checkNotification');
+                    __theSibling.do(function (theSibling) {
                         //
-                        //  Found the Notifications
+                        //  The Sibling has been found
                         //
-                        let newLI = dojo.create('li');
-                        dojo.setAttr(newLI, 'id', 'lotusBannerMeeting');
-                        let newA = dojo.create('a');
-                        dojo.setAttr(newA, 'role', 'button');
-                        dojo.setAttr(newA, 'innerHTML', '<img src="/files/customizer/webMeetings/webMeeting.png"></img>');
-                        dojo.setStyle(newA, "cursor", "pointer");
-                        newA.addEventListener('click', function() {
-                            dojo.stopEvent(event);
-                            let win = window.open(theMeeting, '_blank');
-                            win.focus();
-                        });
-                        /*
-                        dojo.setStyle(newA, "padding-bottom", "7px");
-                        dojo.setAttr(newA, 'onmouseover', "dojo.require('lconn.core.header'); lconn.core.header.menuMouseover(this);");
-                        dojo.setAttr(newA, 'onclick', "dojo.require('lconn.core.header');lconn.core.header.menuClick(this);");
-                        dojo.setAttr(newA, 'onfocus', "dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);");
-                       
-                        newA.addEventListener('mouseover', function() {
-                            dojo.require('lconn.core.header');
-                            lconn.core.header.menuMouseover(this)
-                        });
-                        */
-                        //
-                        //  then, add the newly created label and HIDE the DIV containg the checkbox
-                        //
-                        dojo.place(newA, newLI, "first");
-                        dojo.place(newLI, __placeId, "after");
+                        let __candidate = null;
+                        if (theSibling.nextSibling) {
+                            //
+                            //  Not Cloud
+                            //
+                            if (theSibling.nextSibling.id === 'lotusBannerMeeting') {
+                                __candidate = theSibling.nextSibling;
+                            }
+                        } else {
+                            //
+                            //  Cloud
+                            //
+                            if (theSibling.previousSibling.id === 'lotusBannerMeeting') {
+                                __candidate = theSibling.previousSibling;
+                            }
+                        }
+                        if (__candidate) {
+                            //
+                            //  We already added the item.
+                            //  We do not want to add it again
+                            //
+                            __cBill_logger('cnxMeetingInjector : Meeting Icon already added !');
+                        } else {
+                            //
+                            //  OK, let's add the new item
+                            //
+                            let newFather = null;
+                            newFather = dojo.create(__newFatherTag);
+                            dojo.setAttr(newFather, 'id', 'lotusBannerMeeting');
+                            let newA = dojo.create('a');
+                            dojo.setAttr(newA, 'role', 'button');
+                            dojo.setAttr(newA, 'innerHTML', '<img src="/files/customizer/webMeetings/webMeeting.png' + __repoSuffix + '"></img>');
+                            dojo.setStyle(newA, "cursor", "pointer");
+                            newA.addEventListener('click', function() {
+                                dojo.stopEvent(event);
+                                let win = window.open(theMeeting, '_blank');
+                                win.focus();
+                            });
+                            /*
+                            dojo.setStyle(newA, "padding-bottom", "7px");
+                            dojo.setAttr(newA, 'onmouseover', "dojo.require('lconn.core.header'); lconn.core.header.menuMouseover(this);");
+                            dojo.setAttr(newA, 'onclick', "dojo.require('lconn.core.header');lconn.core.header.menuClick(this);");
+                            dojo.setAttr(newA, 'onfocus', "dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);");                      
+                            newA.addEventListener('mouseover', function() {
+                                dojo.require('lconn.core.header');
+                                lconn.core.header.menuMouseover(this)
+                            });
+                            */
+                            //
+                            //  then, add the newly created label and HIDE the DIV containg the checkbox
+                            //
+                            dojo.place(newA, newFather, "first");
+                            dojo.place(newFather, __placeId, __beforeOrAfter);
+                        }
                     },  __placeId);
                 } else {
                     //
@@ -106,6 +127,21 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
             //  Variable "lconn.core.auth.getUser().id" is available from Connections
             //
             try {
+                //
+                //  Check for cloud or not
+                //
+                if (document.location.href.startsWith('https://apps.')) {
+                    __placeId = "bss-usersMenu";
+                    __repoSuffix = '?repoName=global-samples';
+                    __beforeOrAfter = 'before';
+                    __newFatherTag = 'div';
+                    __cBill_logger('cnxMeetingInjector : Cloud place <' + __newFatherTag + '> Id = ' + __placeId);
+                } else {
+                    __cBill_logger('cnxMeetingInjector : Non-cloud place <' + __newFatherTag + '> Id = ' + __placeId);
+                }
+                //
+                //  Fetch the Profile details
+                //
                 let __userId = lconn.core.auth.getUser().id;
                 __cBill_logger('cnxMeetingInjector : Getting profile data for userId: ' + __userId);
                 let profilesArgs = {
@@ -145,7 +181,7 @@ if (document.location.pathname.startsWith('/connections/opensocial/') || documen
                                     let theParent = theNode.parentElement;
                                     let theChild = null;
                                     for (let k=0; k < theParent.children.length; k++) {
-                                        if (theParent.children[k].class === 'x-extension-value') {
+                                        if (theParent.children[k].className === 'x-extension-value') {
                                             theChild = theParent.children[k].innerText;
                                             break;
                                         }
