@@ -1,5 +1,3 @@
-<h1>PLEASE DO NOT USE UNTIL FURTHER NOTICE</h1>
-
 # Connections Cloud - Disable Content Creation Customization
 This example is provided as-is and can be used to hide the UI artifacts, such as buttons and links, that users would use to create new content when accessing Connections Cloud with a web browser.
 
