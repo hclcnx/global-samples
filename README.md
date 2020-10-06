@@ -1,4 +1,4 @@
-# Welcome to global-samples for IBM Connections Customizer
+# Welcome to global-samples for HCL Connections Customizer
 
 ## What's Here?
 ### Simple Samples
@@ -8,7 +8,7 @@ To modify these customizations based on these samples you can clone this reposit
 
 Any queries or problems should be logged as [Issues][4] in this repository.
 
-[1]: https://github.com/ibmcnxdev/customizer/blob/master/docs/IBMConnectionsCustomizer.md#fine-grained-filtering-based-on-user-identity
-[2]: https://www-10.lotus.com/ldd/appdevwiki.nsf/xpDocViewer.xsp?lookupName=Dev+Guide+topics#action=openDocument&res_title=Managing_extensions_for_Customizercom_Orient_Mecom_or_Important_To_Me&content=sdkcontent
-[3]: https://github.com/ibmcnxdev/customizer/blob/master/docs/IBMConnectionsCustomizer.md#figure-2-ibm-connections-developers-organization-on-github
-[4]: https://github.com/ibmcnxdev/global-samples/issues
+[1]: https://github.com/hclcnx/customizer/blob/master/docs/HCLConnectionsCustomizer.md#fine-grained-filtering-based-on-user-identity
+[2]: https://ds-infolib.hcltechsw.com/ldd/appdevwiki.nsf/xpDocViewer.xsp?lookupName=Dev+Guide+topics#action=openDocument&res_title=Managing_extensions_for_Customizercom_Orient_Mecom_or_Important_To_Me&content=pdcontent&sa=true
+[3]: https://github.com/hclcnx/customizer/blob/master/docs/IBMConnectionsCustomizer.md#figure-2-ibm-connections-developers-organization-on-github
+[4]: https://github.com/hclcnx/global-samples/issues
