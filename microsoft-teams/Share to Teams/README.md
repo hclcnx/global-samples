@@ -1,13 +1,13 @@
 # Share to Microsoft Teams
 This example injects a customization to display a Microsoft integration which allows the user to easily share a link to the current page they are viewing into a Teams channel.
 
-The icon appears in the upper right corner of pages:
+The icon appears in the upper right corner of pages:  
 ![Share to Teams](./share-to-teams-icon.png)
 
-After clicking, the user is asked to select the team and channel to which they wish to post the link and have the chance to edit the default message:
+After clicking, the user is asked to select the team and channel to which they wish to post the link and have the chance to edit the default message:  
 ![Choose Teams Channel](./choose-teams-channel.png)
 
-Lastly, the entry is posted:
+Lastly, the entry is posted:  
 ![Post to Channel](./post-to-channel.png)
 
 The json from [ms-teams-share.json](./ms-teams-share.json) can either be imported from file or copied / pasted into the code editor of the appregistry client to create the extension.

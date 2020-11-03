@@ -4,7 +4,7 @@ The appregistry extensions in this folder enable 1-1 chat from the important to 
 The json can either be imported from file or copied / pasted into the code editor of the appregistry client to create the extensions.
 
 ## Important to Me
-Start a Teams chat directly from an ITM bubble:
+Start a Teams chat directly from an ITM bubble:  
 ![Start Chat from ITM](./itm-chat.png)
 
 The example extension [ms-teams-itm.json](./ms-teams-itm.json) contains 3 different actions to launch a communication from the user bubble:
@@ -18,10 +18,10 @@ The example extension [ms-teams-itm.json](./ms-teams-itm.json) contains 3 differ
 An administrator should enable the action that aligns best with the Teams client access methods in use in their organization. 
    
 ## Bizcard & Profiles
-Start a chat directly from the bizcard:
+Start a chat directly from the bizcard:  
 ![Start Chat from Bizcard](./bizcard-chat.png)
 
-Start a chat directly from the profile:
+Start a chat directly from the profile:  
 ![Start Chat from Profile](./profile-chat.png)
 
 The json from [ms-teams-profile-bizcard.json](./ms-teams-profile-bizcard.json) can either be imported from file or copied / pasted into the code editor of the appregistry client to create the extension.
