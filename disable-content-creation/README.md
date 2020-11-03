@@ -37,7 +37,7 @@ As an administrator of the organization, do the following:
 
 ## Additional Payload Examples
 ### Extension Applies to Only Specified Users
-```
+```json
 "payload": {
     "include-files": [
         "disable-content-creation/disable-icc-content-creation.js"
@@ -58,7 +58,7 @@ As an administrator of the organization, do the following:
 ```
   
 ### Extension Does Not Apply to Specified Users
-```
+```json
 "payload": {
     "include-files": [
         "disable-content-creation/disable-icc-content-creation.js"
