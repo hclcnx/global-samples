@@ -3,11 +3,11 @@ This example injects a customization to hide the default Connections navigation 
 
 Instead, a small icon is added in the upper left that allows a user to expose the navigation if they so choose, but which is less intrusive in the overall content viewing experience.
 
-**With Customization**
+**With Customization**  
 Navigation panel is collapsed but icon is present to expand:  
 ![Embedded page without navigation](./without-nav.png)
 
-**Without Customization**
+**Without Customization**  
 Default navigation panel is exposed and takes up space:  
 ![Embedded page without navigation](./with-nav.png)
 
