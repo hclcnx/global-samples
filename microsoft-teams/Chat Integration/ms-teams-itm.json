@@ -28,9 +28,6 @@
             },
             "type": "com.ibm.itm.entry.person.default",
             "payload": {
-                "url": "/profiles/html/profileView.do?userid=${exId}",
-                "label": "Person Profile",
-                "show": true,
                 "actions": [
                     {
                         "type": "sipcall",
