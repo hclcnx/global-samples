@@ -209,6 +209,8 @@
                 message = _getPreparedMessage(TEAMS_SHARE_MESSAGE_DEFAULT, "default");
             } else if (type === 'files') {
                 message = _getPreparedMessage(TEAMS_SHARE_MESSAGE_FILES_FILE_PREVIEW, "files");
+            } else {
+                message = _getPreparedMessage(TEAMS_SHARE_MESSAGE_DEFAULT, "default");
             }
             // remove page href from string if present
             message = message.replace('{PAGE_HREF}', '');
@@ -320,7 +322,9 @@
                     updateTeamsShareClickAction(hrefElem.href, null);
 
                     // listen to changes of page title and url hash
-                    window.onhashchange = updateTeamsShareContext;
+                    window.addEventListener("hashchange", function () {
+                        updateTeamsShareContext();
+                    }, true);
                     new MutationObserver(onTitleChange).observe(
                         document.querySelector('title'),
                         { subtree: true, characterData: true, childList: true }
