@@ -12,7 +12,7 @@
 <br>
 
 # Connections Application Package for Microsoft Teams
-The application manifest (and associated files) provided here [manifest.json](./manifest.json) should be used as the starting point for defining the necessary Teams application which governs the integration of the Teams micro-services provided in the HCL Connections Component Pack.
+The application manifest (and associated files) provided here [manifest.json](./sample/manifest.json) should be used as the starting point for defining the necessary Teams application which governs the integration of the Teams micro-services provided in the HCL Connections Component Pack.
 
 The app package is ultimately a zip file that can be uploaded to the Teams admin center that saves having to provide the values manually via the admin UI. It is also a backup of the application configuration at a specific point in time.
 
