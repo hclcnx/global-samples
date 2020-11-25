@@ -5,7 +5,7 @@
   - [Section 3 - Configuring Bots](#section-3---configuring-bots)
   - [Section 4 - Configuring Messaging Extensions](#section-4---configuring-messaging-extensions)
   - [Section 5 - Configuring Domains](#section-5---configuring-domains)
-  - [Section 6 - Configuring Web Application](#section-6---configuring-web-application)
+  - [Section 6 - Configuring Web Application SSO](#section-6---configuring-web-application-sso)
   - [Section 7 - Configuring Localization](#section-7---configuring-localization)
 - [Packaging the App](#packaging-the-app)
 - [Microsoft Teams App Manifest Reference Documentation](#microsoft-teams-app-manifest-reference-documentation)
@@ -88,7 +88,7 @@ The **configurationUrl** attribute value must be updated to include the host nam
 ## Section 3 - Configuring Bots
 A bot is used to insert message content into a conversation on behalf of an application. In this case, the messaging extension, described in [section 4](#section-4---configuring-messaging-extensions), requires a bot to insert a card into the conversation with a link to Connections content.
 
-The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation.
+The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation. Use that id value to replace {Connections_AzureApplicationId}.
 
 ```json
 "bots": [
@@ -113,7 +113,7 @@ Figure 3: Link to Content in Conversation
 
 The **url** attribute value must be updated to include the host name at which Connections is accessed by replacing {Connections_Hostname}.
 
-The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation.
+The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation. Use that id value to replace {Connections_AzureApplicationId}.
 
 ```json
 "composeExtensions": [
@@ -167,8 +167,8 @@ Replace the {Connections_Hostname} value in the json array with either the full 
 ```
 <br>
 
-## Section 6 - Configuring Web Application
-
+## Section 6 - Configuring Web Application SSO
+Replace the correct app id and resource url values to allow SSO to work with the app:
 ```json
 "webApplicationInfo": {
    "id": "{Connections_AzureApplicationId}",
@@ -182,7 +182,7 @@ The information presented about the application, that is described in Section 1,
 
 The files are named LL.json where LL is the 2 character locale convention, for example, en.json, de.json, fr.json, etc.
 
-Files for those three examples have been provided in this repo - the en.json contains the following:
+Files for those three examples have been provided in this repo - for example, the [en.json](./sample/en.json) contains the following:
 
 ```json
 {
@@ -230,7 +230,7 @@ A Teams app package is a .zip file containing the following - example shown in F
   
 * Localized versions of string files describing the app.
 <br>
-![App Package Zip](./doc/zip-pkg.png)
+![App Package Zip](./doc/zip-pkg.png)  
 Figure 4: App Package Content
 <br>
 
