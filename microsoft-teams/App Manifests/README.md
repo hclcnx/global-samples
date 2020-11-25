@@ -182,7 +182,7 @@ The information presented about the application, that is described in Section 1,
 
 The files are named LL.json where LL is the 2 character locale convention, for example, en.json, de.json, fr.json, etc.
 
-Files for those three examples have been provided in this repo - the en.json contains the following:
+Files for those three examples have been provided in this repo - for example, the [en.json](./sample/en.json) contains the following:
 
 ```json
 {
@@ -230,7 +230,7 @@ A Teams app package is a .zip file containing the following - example shown in F
   
 * Localized versions of string files describing the app.
 <br>
-![App Package Zip](./doc/zip-pkg.png)
+![App Package Zip](./doc/zip-pkg.png)  
 Figure 4: App Package Content
 <br>
 
