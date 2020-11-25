@@ -16,7 +16,7 @@ The application manifest (and associated files) provided here [manifest.json](./
 
 The app package is ultimately a zip file that can be uploaded to the Teams admin center that saves having to provide the values manually via the admin UI. It is also a backup of the application configuration at a specific point in time.
 
-The following items make up the zip content:
+The following items make up the zip content (see examples [here](./sample)):
 
 | File Name | Purpose |
 | --------- | ------- |
