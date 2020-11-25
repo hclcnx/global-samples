@@ -35,7 +35,7 @@ In this first part of the manifest, the application is described in terms of nam
 
 This information is visible to users when they look for apps to add to channels or chats.
 
-![App Info](./doc/app-info.png)
+![App Info](./doc/app-info.png)  
 Figure 1: Application Information
 <br>
 
@@ -65,7 +65,7 @@ In this section of the manifest, the scope of use for a tab app and URL for the 
 The example shown below in Figure 2 is a Connections wiki page.
 
 
-![Tab App](./doc/tab-app.png)
+![Tab App](./doc/tab-app.png)  
 Figure 2: Tab App Content
 <br>
 
@@ -107,7 +107,7 @@ The botId/applicationId is generated when the bot is registered; see [Configurin
 ## Section 4 - Configuring Messaging Extensions
 The messaging extension allows an end user to invoke the Connections app integration to choose to share a link from either their Connections recent history or files list in the current conversation.
 
-![Messaging Extension](./doc/msg-extension.png)
+![Messaging Extension](./doc/msg-extension.png)  
 Figure 3: Link to Content in Conversation
 <br>
 
