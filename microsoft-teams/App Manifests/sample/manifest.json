@@ -2,12 +2,14 @@
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
     "manifestVersion": "1.7",
     "version": "1.0.0",
+    "id": "2418645c-c344-4b0e-985a-5ab940309778",
     "packageName": "com.hcl.connections",
     "developer": {
         "name": "HCL",
         "websiteUrl": "https://www.hcltechsw.com/connections",
         "privacyUrl": "https://www.hcltechsw.com/wps/portal/legal/privacy",
-        "termsOfUseUrl": "https://www.hcltechsw.com/wps/portal/legal/terms-use"
+        "termsOfUseUrl": "https://www.hcltechsw.com/wps/portal/legal/terms-use",
+        "mpnId": "1416163"
     },
     "icons": {
         "color": "Connections192x192.png",
@@ -24,7 +26,7 @@
     "accentColor": "#01539B",
     "configurableTabs": [
         {
-            "configurationUrl": "https://{Connections_Hostname}/teams-tab",
+            "configurationUrl": "https://%Connections_Hostname%/teams-tab",
             "canUpdateConfiguration": true,
             "scopes": [
                 "team",
@@ -34,9 +36,10 @@
     ],
     "bots": [
         {
-            "botId": "{Connections_AzureApplicationId}",
+            "botId": "%Connections_AzureApplicationId%",
             "scopes": [
-                "team"
+                "team",
+                "groupchat"
             ],
             "supportsFiles": true,
             "isNotificationOnly": false
@@ -44,7 +47,7 @@
     ],
     "composeExtensions": [
         {
-            "botId": "{Connections_AzureApplicationId}",
+            "botId": "%Connections_AzureApplicationId%",
             "canUpdateConfiguration": true,
             "commands": [
                 {
@@ -70,7 +73,7 @@
                         "title": "Connections Share",
                         "width": "medium",
                         "height": "medium",
-                        "url": "https://{Connections_Hostname}/teams-share-service/api/msteams/command"
+                        "url": "https://%Connections_Hostname%/teams-share-service/api/msteams/command"
                     }
                 }
             ]
@@ -81,11 +84,11 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "{Connections_Hostname}"
+        "%Connections_Hostname%"
     ],
     "webApplicationInfo": {
-        "id": "{Connections_AzureApplicationId}",
-        "resource": "api://{connectionHostname}/{Connections_AzureApplicationId}"
+        "id": "%Connections_AzureApplicationId%",
+        "resource": "api://%Connections_Hostname%/%Connections_AzureApplicationId%"
     },
     "localizationInfo": {
         "defaultLanguageTag": "en",
@@ -93,14 +96,6 @@
             {
                 "languageTag": "en",
                 "file": "en.json"
-            },
-            {
-                "languageTag": "fr",
-                "file": "fr.json"
-            },
-            {
-                "languageTag": "de",
-                "file": "de.json"
             }
         ]
     }

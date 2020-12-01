@@ -74,7 +74,7 @@ The **configurationUrl** attribute value must be updated to include the host nam
 ```json
 "configurableTabs": [
         {
-            "configurationUrl": "https://{Connections_Hostname}/teams-tab",
+            "configurationUrl": "https://%Connections_Hostname%/teams-tab",
             "canUpdateConfiguration": true,
             "scopes": [
                 "team",
@@ -88,12 +88,12 @@ The **configurationUrl** attribute value must be updated to include the host nam
 ## Section 3 - Configuring Bots
 A bot is used to insert message content into a conversation on behalf of an application. In this case, the messaging extension, described in [section 4](#section-4---configuring-messaging-extensions), requires a bot to insert a card into the conversation with a link to Connections content.
 
-The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation. Use that id value to replace {Connections_AzureApplicationId}.
+The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation. Use that id value to replace %Connections_AzureApplicationId%.
 
 ```json
 "bots": [
    {
-      "botId": "{Connections_AzureApplicationId}",
+      "botId": "%Connections_AzureApplicationId%",
       "scopes": [
         "team"
       ],
@@ -111,14 +111,14 @@ The messaging extension allows an end user to invoke the Connections app integra
 Figure 3: Link to Content in Conversation
 <br>
 
-The **url** attribute value must be updated to include the host name at which Connections is accessed by replacing {Connections_Hostname}.
+The **url** attribute value must be updated to include the host name at which Connections is accessed by replacing %Connections_Hostname%.
 
-The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation. Use that id value to replace {Connections_AzureApplicationId}.
+The botId/applicationId is generated when the bot is registered; see [Configuring an Azure App to Support the Microsoft Teams App]() in the Connections documentation. Use that id value to replace %Connections_AzureApplicationId%.
 
 ```json
 "composeExtensions": [
    {
-      "botId": "{Connections_AzureApplicationId}",
+      "botId": "%Connections_AzureApplicationId%",
       "canUpdateConfiguration": true,
       "commands": [
          {
@@ -144,7 +144,7 @@ The botId/applicationId is generated when the bot is registered; see [Configurin
                "title": "Connections Share",
                "width": "medium",
                "height": "medium",
-               "url": "https://{Connections_Hostname}/teams-share-service/api/msteams/command"
+               "url": "https://%Connections_Hostname%/teams-share-service/api/msteams/command"
             }
          }
       ]
@@ -158,11 +158,11 @@ See [section 7](#section-7---configuring-localization) for details on translatio
 ## Section 5 - Configuring Domains
 Valid domains identifies a list of target host or domain names for websites that Teams should allow access from within the Teams browser or client experience. For example, the tab app will show Connections content pages, so the host name or domain of the Connections deployment must be allowed. 
 
-Replace the {Connections_Hostname} value in the json array with either the full Connections host name or appropriate domain name.
+Replace the %Connections_Hostname% value in the json array with either the full Connections host name or appropriate domain name.
 
 ```json
 "validDomains": [
-   "{Connections_Hostname}"
+   "%Connections_Hostname%"
 ],
 ```
 <br>
@@ -172,7 +172,7 @@ Replace the correct app id and resource url values to allow SSO to work with the
 ```json
 "webApplicationInfo": {
    "id": "{Connections_AzureApplicationId}",
-   "resource": "api://{connectionHostname}/{Connections_AzureApplicationId}"
+   "resource": "api://%Connections_Hostname%/%Connections_AzureApplicationId%"
 },
 ```
 <br>
@@ -233,6 +233,14 @@ A Teams app package is a .zip file containing the following - example shown in F
 ![App Package Zip](./doc/zip-pkg.png)  
 Figure 4: App Package Content
 <br>
+
+The files can be zipped up using your favorite archive utility.  Just ensure that there are no folders contained within the zip files.  All files should be at the root level of the archive.
+
+If you are using a terminal on a Mac or Linux, use something similar to the following:
+
+  ```
+  zip ConnectionsTeamsApp.zip *
+  ```
 
 Once the package is created it can be uploaded to the Teams admin center by an administrator and published for use in the organization apps catalog. 
 
